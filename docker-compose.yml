@@ -1,0 +1,7 @@
+version: '2'
+services:
+  dynamodb:
+    image: tray/dynamodb-local
+    command: tray/dynamodb-local -port 7777
+    ports:
+      - "7777:7777"

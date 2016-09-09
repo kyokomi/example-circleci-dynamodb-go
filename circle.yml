@@ -1,0 +1,17 @@
+# dynamodb-local
+# https://discuss.circleci.com/t/how-to-install-dynamodb-local/2018/2
+machine:
+  environment:
+    _JAVA_OPTIONS: "-Xms512m -Xmx1024m"
+  java:
+    version: openjdk7
+  post:
+    - curl -k -L -o dynamodb-local.tgz http://dynamodb-local.s3-website-us-west-2.amazonaws.com/dynamodb_local_latest.tar.gz
+    - tar -xzf dynamodb-local.tgz
+    - java -Djava.library.path=./DynamoDBLocal_lib -jar DynamoDBLocal.jar -port 7777:
+        background: true
+
+checkout:
+  pre:
+    - go env
+    - go version
